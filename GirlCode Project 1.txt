@@ -2,11 +2,13 @@ First click on the manilla folder at the top, and create a new file anywhere cal
 Click on the raspberry in the top left corner, mouse down to games, and click open Minecraft Pi
 Click Start Game then Create New
 To get control of your mouse, hit tab or the escape button to pause the game, to make the screen bigger adjust the black box behind it with arrows and WASD to move around and E to pull up inventory
-Now type
-I56--65      
-And run it
 
-Now get the position
+To begin, first we will start by posting a comment to chat. In your file, type
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()
+mc.postToChat("GirlCode Rocks!)
+
+Now, we find get our position in the first step to teleport
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x, y, z = mc.player.getPos()
@@ -17,68 +19,72 @@ from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x, y, z = mc.player.getPos()
 mc.player.setPos(x, y+100, z)
+If you edit y and z too high at the same time, the game will be overwhelmed
 
 Now set a block
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x, y, z = mc.player.getPos()
 mc.setBlock(x+1, y, z, 1)
-Where 1 is what type of block it is grass is 2 dirt is 3
-You can also write it as
+Where 1 is what type of block it is grass is 2 dirt is 3 for example!
+
+We can also write it in a way that is more clear
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x, y, z = mc.player.getPos() 
 dirt = 3
 mc.setBlock(x+1, y, z, dirt)
 
-We can also change the color this way 
+We can also change the color of the block this way 
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x, y, z = mc.player.getPos()
 wool = 35
 mc.setBlock(x+1, y, z, wool, 2)
-Other numbers in the last column will give you different numbers
+Other numbers in the last column will give you different numbers!
 
 You can also make one big huge chunk of stone
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x, y, z = mc.player.getPos() 
 stone = 1
-mc.setBlocks(x+1, y+1, z+1,x+11, y+11, z+11, stone)
+mc.setBlocks(x, y, z,x+10, y+10, z+10, stone)
 To make a 10x10x10 block of stone
 
-We can also make a block of exploding tnt in the game. Without adding the ,1 after tnt, the cube will not explode
+We can also make a block of exploding tnt in the game. Without adding the ",1" after tnt, the cube will not explode
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 tnt = 46
-mc.setBlocks(x, y, z, tnt, 1)
+mc.setBlock(x, y, z, tnt, 1)
 
 To make a large cube of explosions, how might we use what we did before with the stone with this block of tnt?
+from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 tnt = 46
-mc.setBlocks(x+1, y+1, z+1,x+11, y+11, z+11, tnt, 1)
+mc.setBlocks(x, y, z,x+4, y+4, z+4, tnt, 1)
 
-Now we will make flowers appear behind us every step we walk
+Now we will make flowers appear behind us every step we walk!
 from mcpi.minecraft import Minecraft
 from time import sleep
 mc = Minecraft.create()
 flower = 38
 while True:
-x, y, z = mc.player.getPos()
-mc.setBlock(x, y, z, flower)
-sleep (.1)
+	x, y, z = mc.player.getPos()
+	mc.setBlock(x, y, z, flower)
+	sleep (.1)
 To stop it hit control c
 
-Now we make it run only when we are standing on grass
+Now we make it run only when we are standing on grass. Our first step will be so our program can read what we are standing on to identify it's grass or not.
 from mcpi.minecraft import Minecraft
 from time import sleep
 mc = Minecraft.create()
 flower = 38
 grass = 2
 while True:
-x, y, z = mc.player.getPos()
+	x, y, z = mc.player.getPos()
 	block_beneath = mc.getBlock(x, y-1, z)
 	print(block_beneath)
+Now stop the program.
 
 Now we will make it so only flowers appear if it is grass
 from mcpi.minecraft import Minecraft
@@ -86,17 +92,33 @@ from time import sleep
 mc = Minecraft.create()
 flower = 38
 while True:
-x, y, z = mc.player.getPos()
+	x, y, z = mc.player.getPos()
 	block_beneath = mc.getBlock(x, y-1, z)
-if block_beneath == grass
-mc.setBlock(x, y, z, flower)
-else
-mc.setBlock(x, y-1, z, grass)	
+	if block_beneath == grass:
+		mc.setBlock(x, y, z, flower)
+	else:
+		mc.setBlock(x, y-1, z, grass)	
 
 Now we can have fun with lava
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
-x, y, z = mc.playet.getPos()
+x, y, z = mc.player.getPos()
 lava = 10
-mc.setBlock(x+3, y+3, z, lava) 
+mc.setBlock(x, y, z, lava) 
+
+--------------------------------------------------------------
+If time in session, play with lava cooling settings. See what happens when lava cools down!
+from mcpi.minecraft import Minecraft
+from time import sleep
+mc = Minecraft.create()
+x, y, z = mc.player.getPos()
+lava = 5
+water = 3
+air = 0
+mc.setBlock(x, y, z, lava)
+sleep(6)
+mc.setBlock(x, y, z, water)
+sleep(3)
+mc.setBlock(x, y, z, air)
+
 
