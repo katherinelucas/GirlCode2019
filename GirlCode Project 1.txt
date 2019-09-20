@@ -26,9 +26,9 @@ from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x, y, z = mc.player.getPos()
 mc.setBlock(x+1, y, z, 1)
-Where 1 is what type of block it is grass is 2 dirt is 3 for example!
+Where 1 is what type of block it is, grass is 2 dirt is 3 for example!
 
-We can also write it in a way that is more clear
+We can also write it in a way that is more clear to what block is being set
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x, y, z = mc.player.getPos() 
@@ -54,12 +54,14 @@ To make a 10x10x10 block of stone
 We can also make a block of exploding tnt in the game. Without adding the ",1" after tnt, the cube will not explode
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
+x, y, z = mc.player.getPos() 
 tnt = 46
 mc.setBlock(x, y, z, tnt, 1)
 
 To make a large cube of explosions, how might we use what we did before with the stone with this block of tnt?
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
+x, y, z = mc.player.getPos() 
 tnt = 46
 mc.setBlocks(x, y, z,x+4, y+4, z+4, tnt, 1)
 
@@ -91,6 +93,7 @@ from mcpi.minecraft import Minecraft
 from time import sleep
 mc = Minecraft.create()
 flower = 38
+grass = 2
 while True:
 	x, y, z = mc.player.getPos()
 	block_beneath = mc.getBlock(x, y-1, z)
