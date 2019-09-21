@@ -118,10 +118,10 @@ x, y, z = mc.player.getPos()
 lava = 5
 water = 3
 air = 0
-mc.setBlock(x, y, z, lava)
+mc.setBlock(x+3, y+3, z, lava)
 sleep(6)
-mc.setBlock(x, y, z, water)
+mc.setBlock(x+3, y+5, z, water)
 sleep(3)
-mc.setBlock(x, y, z, air)
+mc.setBlock(x+3, y+5, z, air)
 
 
