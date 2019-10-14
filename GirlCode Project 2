@@ -1,0 +1,99 @@
+The alphabet starts from a which we will make as 0
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+print (alphabet[0])
+print (alphabet[4])
+
+Now we will set our key and find the position from letter entered
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+character=input(‘Please enter a character: ‘)
+position=alphabet.find(character)
+print(position)
+
+Now we will find its new position
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+key=3
+character=input(‘Please enter a character: ‘)
+position=alphabet.find(character)
+print(position)
+newposition=position + key
+print(newposition)
+
+Now we have our new letter using the encryption
+You’ll notice if we put in a letter like ‘y’ it will go over how many letters in the alphabet. To fix this we will add “%26” so it will loop  back to the beginning if this happens
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+key=3
+character=input(‘Please enter a character: ‘)
+position=alphabet.find(character)
+print(position)
+newposition=(position + key) %26
+print(newposition)
+
+Now we will print the new letter at that position
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+key=3
+character=input(‘Please enter a character: ‘)
+position=alphabet.find(character)
+print(position)
+newposition=(position + key) %26
+print(newposition)
+newcharacter = alphabet[newposition]
+print(newcharacter)
+
+Now we will clean it up nicer
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+key=3
+character=input(‘Please enter a character: ‘)
+position=alphabet.find(character)
+newposition=(position + key) %26
+newcharacter = alphabet[newposition]
+print(‘The new character is: ‘, newcharacter)
+
+Now we will encrypt a whole new line.
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+key=3
+message=input(‘Please enter a message: ‘)
+for character in message:
+position=alphabet.find(character)
+newposition=(position + key) %26
+newcharacter = alphabet[newposition]
+print(‘The new character is: ‘, newcharacter)
+
+This will put your code into a cypher letter by letter. We can also print the message as it’s being encrypted.
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+key=3
+newmessage = ‘ ’
+message=input(‘Please enter a message: ‘)
+for character in message:
+position=alphabet.find(character)
+newposition=(position + key) %26
+newcharacter = alphabet[newposition]
+print(‘The new character is: ‘, newcharacter)
+	newmessage += newcharacter
+	print(newmessage)
+
+We can also have it displayed only at the end
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+key=3
+Newmessage = ‘ ’
+message=input(‘Please enter a message: ‘)
+for character in message:
+position=alphabet.find(character)
+newposition=(position + key) %26
+newcharacter = alphabet[newposition]
+	newmessage += newcharacter
+print(“Your new message is ‘, newmessage)
+
+We also want to make it so that only the letters are encrypted, not things like ‘!’s. To do that we can use
+alphabet = ‘abcdefghijklmnopqrstuvwxyz’
+key=3
+Newmessage = ‘ ’
+message=input(‘Please enter a message: ‘)
+for character in message:
+	if character in alphabet:
+position=alphabet.find(character)
+newposition=(position + key) %26
+newcharacter = alphabet[newposition]
+		newmessage += newcharacter
+	else:
+		newmessage += character
+print(“Your new message is ‘, newmessage)
